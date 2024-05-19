@@ -34,6 +34,7 @@ class SimplifiedCalculator {
     private Color darkGray = new Color(60, 63, 65);
     private Color black = new Color(43, 43, 43);
     private Color orange = new Color(255, 165, 0);
+    private Color darkerBlack = new Color(30, 30, 30);
 
     public SimplifiedCalculator() {
         initialize();
@@ -50,35 +51,39 @@ class SimplifiedCalculator {
         frame.getContentPane().setLayout(new BorderLayout());
 
         textField = new JTextField();
-        textField.setEditable(false);
+        textField.setEditable(true); // Make the text field editable
         textField.setBackground(darkGray);
         textField.setForeground(Color.WHITE);
         textField.setHorizontalAlignment(JTextField.RIGHT);
         textField.setFont(new Font("Arial", Font.BOLD, 24));
+        textField.setBorder(BorderFactory.createLineBorder(darkerBlack, 2)); // Add a darker black border
         frame.getContentPane().add(textField, BorderLayout.NORTH);
 
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(5, 4, 10, 10));
         buttonPanel.setBackground(darkGray);
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add margin
         frame.getContentPane().add(buttonPanel, BorderLayout.CENTER);
 
         // Adding buttons to the panel
         addButton("7", black, Color.WHITE);
         addButton("8", black, Color.WHITE);
         addButton("9", black, Color.WHITE);
+        addButton("/", darkGray, orange); // Add division symbol
 
         addButton("4", black, Color.WHITE);
         addButton("5", black, Color.WHITE);
         addButton("6", black, Color.WHITE);
+        addButton("*", darkGray, orange); // Add multiplication symbol
 
         addButton("1", black, Color.WHITE);
         addButton("2", black, Color.WHITE);
         addButton("3", black, Color.WHITE);
+        addButton("-", darkGray, orange);
 
         addButton("0", black, Color.WHITE);
         addButton(".", black, Color.WHITE);
         addButton("+", darkGray, orange);
-        addButton("-", darkGray, orange);
         addButton("=", black, orange);
 
         // Add a border around the frame
@@ -96,6 +101,7 @@ class SimplifiedCalculator {
         btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Add your calculation logic here
+                textField.setText(textField.getText() + text);
             }
         });
     }
